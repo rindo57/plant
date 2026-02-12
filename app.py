@@ -10,8 +10,8 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 # Configure Gemini
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel('gemini-1.5-flash-latest')
+genai.configure(api_key="AIzaSyDF7DAX4sepDhh-PXSGyMlcczzhxtEHixE")
+model = genai.GenerativeModel('gemini-2.5-flash')
 def get_gemini_response(image_path):
     img = Image.open(image_path)
     prompt = """
