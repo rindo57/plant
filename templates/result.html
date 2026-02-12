@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - Plant Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Analysis Results</h1>
+            <a href="/" class="back-btn">← Analyze Another Plant</a>
+        </header>
+
+        <div class="results-container">
+            <div class="image-section">
+                <h3>Uploaded Leaf Image</h3>
+                <img src="data:image/jpeg;base64,{{ image }}" alt="Plant leaf" class="result-image">
+            </div>
+
+            <div class="analysis-section">
+                <h3>Disease Detection Report</h3>
+                <div class="analysis-content">
+                    {{ analysis|replace('\n', '<br>')|safe }}
+                </div>
+                
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="print-btn">🖨️ Print Report</button>
+                    <button onclick="location.href='/'" class="new-btn">📸 New Analysis</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <p>⚠️ This is an AI-generated analysis. Please consult with agricultural experts for definitive diagnosis and treatment.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Powered by Gemini AI | For educational purposes</p>
+    </footer>
+</body>
+</html>
