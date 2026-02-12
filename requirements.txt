@@ -1,4 +1,3 @@
-Flask==2.3.3
-Pillow==10.0.0
-python-dotenv==1.0.0
-google-generativeai==0.3.0
+flask
+google-generativeai
+python-dotenv
