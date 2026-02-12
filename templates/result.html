@@ -1,83 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analysis Results - Plant Disease Detection</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        .analysis-content {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.8;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        .analysis-content ul, .analysis-content ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        .analysis-content li {
-            margin-bottom: 5px;
-        }
-        .error-message {
-            background: #ffebee;
-            border-left: 4px solid #f44336;
-            padding: 20px;
-            border-radius: 5px;
-            color: #b71c1c;
-        }
-        .success-message {
-            background: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 20px;
-            border-radius: 5px;
-            color: #1e4620;
-        }
-    </style>
+    <title>Analysis Results</title>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🌿 Analysis Results</h1>
-            <a href="/" class="back-btn">← Analyze Another Plant</a>
-        </header>
-
-        <div class="results-container">
-            <div class="image-section">
-                <h3>Uploaded Leaf Image</h3>
-                <img src="data:image/jpeg;base64,{{ image }}" alt="Plant leaf" class="result-image">
-            </div>
-
-            <div class="analysis-section">
-                <h3>Disease Detection Report</h3>
-                <div class="analysis-content">
-                    {% if analysis and analysis.startswith('❌') %}
-                        <div class="error-message">
-                            {{ analysis|replace('\n', '<br>')|safe }}
-                        </div>
-                    {% elif analysis and ('Healthy' in analysis or 'healthy' in analysis) %}
-                        <div class="success-message">
-                            {{ analysis|replace('\n', '<br>')|safe }}
-                        </div>
-                    {% else %}
-                        {{ analysis|replace('\n', '<br>')|safe }}
-                    {% endif %}
-                </div>
-                
-                <div class="action-buttons">
-                    <button onclick="window.print()" class="print-btn">🖨️ Print Report</button>
-                    <button onclick="location.href='/'" class="new-btn">📸 New Analysis</button>
-                </div>
+        <h2>Diagnosis Report</h2>
+        <div class="result-flex">
+            <img src="{{ image_path }}" alt="Uploaded Leaf" class="preview-img">
+            <div class="analysis-text">
+                {{ analysis | replace('\n', '<br>') | safe }}
             </div>
         </div>
-
-        <div class="disclaimer">
-            <p>⚠️ This is an AI-generated analysis. Please consult with agricultural experts for definitive diagnosis and treatment.</p>
-        </div>
+        <a href="/" class="back-btn">Scan Another Plant</a>
     </div>
-
-    <footer>
-        <p>Powered by Gemini AI | For educational purposes</p>
-    </footer>
 </body>
 </html>
